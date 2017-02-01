@@ -1,20 +1,23 @@
 package collections;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 class SchlangeTest {
     public static void main(String args[]) {
         if (args.length == 0)
             throw new IllegalArgumentException("Ein Argument ist notwendig.");
 
-        SchlangeMitListe q = new SchlangeMitListe();
+        Queue<Object> q = new LinkedList<>();
 
         for (int i = 0; i < args[0].length(); i++)
-            q.anfuege(new Character(args[0].charAt(i)));
+            q.add(new Character(args[0].charAt(i)));
 
         System.out.println();
-        q.durchlaufe();
+        System.out.println(q);
 
-        while (!q.istLeer()) {
-            Character c = (Character) q.abarbeite();
+        while (!q.isEmpty()) {
+            Character c = (Character) q.remove();
             System.out.print(c.charValue());
         }
 
