@@ -7,7 +7,7 @@ class CaseComperator implements Comparator<String> {
 
     @Override
     public int compare(String o1, String o2) {
-        return o1.toLowerCase().compareTo(o2.toString());
+        return o1.toLowerCase().compareTo(o2.toLowerCase());
     }
 }
 
@@ -15,7 +15,7 @@ public class FindDups1 {
     public static void main(String args[]) {
         // Set<String> s = new HashSet<>();
         // Set<String> s = new TreeSet<>();
-        SortedSet<String> s = new TreeSet<>();
+        SortedSet<String> s = new TreeSet<>(new CaseComperator());
         Set<String> dups = new HashSet<>();
 
         int counterDistinct = 0;
@@ -25,10 +25,11 @@ public class FindDups1 {
             if (s.add(i)) {
                 counterDistinct++;
             } else {
-                dups.add(i);
+                dups.add(i.toLowerCase());
                 System.out.println(i);
             }
         }
+
 
         System.out.println();
         System.out.println("Anzahl distinct: " + counterDistinct);
@@ -40,7 +41,7 @@ public class FindDups1 {
 
         System.out.println();
         System.out.println("Differenz von dups und set");
-        s.stream().filter(e -> !dups.contains(e)).forEach(e -> System.out.println(e));
+        s.stream().filter(e -> !dups.contains(e.toLowerCase())).forEach(e -> System.out.println(e));
 
     }
 }

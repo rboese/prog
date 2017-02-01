@@ -11,7 +11,7 @@ public class Sort {
             l.add(s);
         }
 
-        l.stream().sorted().forEach(e -> System.out.println(e));
+        l.stream().filter(e -> e.length() > 2).sorted().forEach(e -> System.out.println(e));
 
     }
 }

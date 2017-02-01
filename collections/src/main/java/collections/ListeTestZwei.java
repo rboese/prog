@@ -1,27 +1,31 @@
 package collections;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ListeTestZwei {
 
     public static void main(String[] args) {
         System.out.println("\n\nEinige Tests fuer die Methode konkateniere() :");
-        Liste liste = new Liste();
-        Liste liste2 = new Liste();
-        liste2.einfuegeKopf(new Integer(2));
-        liste2.einfuegeKopf(new Integer(1));
-        liste.konkateniere(liste2);
+        List<Integer> liste = new LinkedList<>();
+        List<Integer> liste2 = new LinkedList<>();
+        liste2.add(0, new Integer(2));
+        liste2.add(0, new Integer(1));
+        liste.addAll(liste2);
         System.out.println("liste sollte jetzt die Elemente 1, 2 enthalten.");
-        liste.durchlaufe();
+        System.out.println(liste);
 
-        liste2 = new Liste();
-        liste2.einfuegeKopf(new Integer(2));
-        liste2.einfuegeKopf(new Integer(1));
+        liste2 = new LinkedList<>();
+        liste2.add(0, new Integer(2));
+        liste2.add(0, new Integer(1));
 
-        liste.einfuegeEnde(new Integer(3));
-        liste.einfuegeEnde(new Integer(4));
-        liste.einfuegeEnde(new Integer(5));
-        liste.konkateniere(liste2);
+        liste.add(new Integer(3));
+        liste.add(new Integer(4));
+        liste.add(new Integer(5));
+        liste.addAll(liste2);
         System.out.println("liste sollte jetzt die Elemente 1, 2, 3, 4, 5, 1, 2 enthalten.");
-        liste.durchlaufe();
+        System.out.println(liste);
 
 /*
       // Die folgenden beiden Zeilen fuehren zu einer unendlichen Schleife. Warum?
@@ -31,57 +35,59 @@ public class ListeTestZwei {
 
 
         System.out.println("\n\nEinige Tests fuer die Methode spiegeln() :");
-        liste = new Liste();
-        liste.durchlaufe();
-        liste.spiegeln();
-        liste.durchlaufe();
+        liste = new LinkedList<>();
+        System.out.println(liste);
 
-        liste.einfuegeEnde(new Integer(1));
-        liste.durchlaufe();
-        liste.spiegeln();
-        liste.durchlaufe();
+        Collections.reverse(liste);
+        System.out.println(liste);
 
-        liste.einfuegeEnde(new Integer(2));
-        liste.durchlaufe();
-        liste.spiegeln();
-        liste.durchlaufe();
-        liste.spiegeln();
-        liste.durchlaufe();
+        liste.add(new Integer(1));
+        System.out.println(liste);
 
-        liste.einfuegeEnde(new Integer(3));
-        liste.einfuegeEnde(new Integer(4));
-        liste.einfuegeEnde(new Integer(5));
+        Collections.reverse(liste);
+        System.out.println(liste);
 
-        liste.durchlaufe();
-        liste.spiegeln();
-        liste.durchlaufe();
+        liste.add(new Integer(2));
+        System.out.println(liste);
+        Collections.reverse(liste);
+        System.out.println(liste);
+        Collections.reverse(liste);
+        System.out.println(liste);
+
+        liste.add(new Integer(3));
+        liste.add(new Integer(4));
+        liste.add(new Integer(5));
+
+        System.out.println(liste);
+        Collections.reverse(liste);
+        System.out.println(liste);
 
 
         System.out.println("\n\nEinige Tests fuer die Methode vergleiche() :");
-        liste = new Liste();
-        liste2 = new Liste();
-        System.out.println(liste.vergleiche(liste2));
+        liste = new LinkedList<>();
+        liste2 = new LinkedList<>();
+        System.out.println(liste.equals(liste2));
         System.out.println();
 
-        liste.einfuegeKopf(new Integer(111));
-        System.out.println(liste.vergleiche(liste2));
-        liste2.einfuegeEnde(new Integer(111));
-        System.out.println(liste.vergleiche(liste2));
+        liste.add(0, new Integer(111));
+        System.out.println(liste.equals(liste2));
+        liste2.add(new Integer(111));
+        System.out.println(liste.equals(liste2));
         System.out.println();
 
-        liste2.einfuegeEnde(new Integer(222));
-        System.out.println(liste.vergleiche(liste2));
-        liste.einfuegeEnde(new Integer(222));
-        System.out.println(liste.vergleiche(liste2));
+        liste2.add(new Integer(222));
+        System.out.println(liste.equals(liste2));
+        liste.add(new Integer(222));
+        System.out.println(liste.equals(liste2));
         System.out.println();
 
-        liste2.einfuegeEnde(new Integer(333));
-        System.out.println(liste.vergleiche(liste2));
-        liste.einfuegeEnde(new Integer(444));
-        System.out.println(liste.vergleiche(liste2));
-        liste.loescheEnde();
-        liste.einfuegeEnde(new Integer(333));
-        System.out.println(liste.vergleiche(liste2));
+        liste2.add(new Integer(333));
+        System.out.println(liste.equals(liste2));
+        liste.add(new Integer(444));
+        System.out.println(liste.equals(liste2));
+        liste.remove(liste.size() - 1);
+        liste.add(new Integer(333));
+        System.out.println(liste.equals(liste2));
     }
 
 }

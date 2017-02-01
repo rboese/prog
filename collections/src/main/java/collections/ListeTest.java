@@ -1,70 +1,73 @@
 package collections;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class ListeTest {
 
     public static void main(String[] args) {
-        Liste liste = new Liste();
+        List<Integer> liste = new LinkedList<>();
 
         System.out.println("Die Liste sollte leer sein.");
-        liste.durchlaufe();
-        System.out.println("Anzahl der Listenelemente = " + liste.zaehleElemente());
+        System.out.println(liste);
+        System.out.println("Anzahl der Listenelemente = " + liste.size());
 
-        liste.einfuegeKopf(new Integer(3));
-        liste.einfuegeKopf(new Integer(2));
-        liste.einfuegeKopf(new Integer(1));
-        liste.einfuegeEnde(new Integer(4));
-        liste.einfuegeEnde(new Integer(5));
+        liste.add(0, new Integer(3));
+        liste.add(0, new Integer(2));
+        liste.add(0, new Integer(1));
+        liste.add(new Integer(4));
+        liste.add(new Integer(5));
         System.out.println("Die Liste sollte jetzt die Elemente 1, 2, 3, 4, 5 enthalten.");
-        liste.durchlaufe();
-        System.out.println("Anzahl der Listenelemente = " + liste.zaehleElemente());
+        System.out.println(liste);
+        System.out.println("Anzahl der Listenelemente = " + liste.size());
 
-        liste.loescheKopf();
-        liste.loescheEnde();
+        liste.remove(0);
+        liste.remove(liste.size() - 1);
         System.out.println("Die Liste sollte jetzt die Elemente 2, 3, 4 enthalten.");
-        liste.durchlaufe();
+        System.out.println(liste);
 
-        liste.loescheKopf();
-        liste.loescheEnde();
+        liste.remove(0);
+        liste.remove(liste.size() - 1);
         System.out.println("Die Liste sollte jetzt nur noch das Element 3 enthalten.");
-        liste.durchlaufe();
+        System.out.println(liste);
 
-        liste.loescheEnde();
+        liste.remove(liste.size() - 1);
         System.out.println("Die Liste sollte jetzt leer sein.");
-        liste.durchlaufe();
+        System.out.println(liste);
 /*
 System.out.println("Jetzt wird eine Exception ausgeloest.");
       liste.loescheKopf();
 */
 
-        liste.einfuegeKopf(new Integer(5));
-        liste.einfuegeKopf(new Integer(4));
-        liste.einfuegeKopf(new Integer(3));
-        liste.einfuegeKopf(new Integer(2));
-        liste.einfuegeKopf(new Integer(1));
+        liste.add(0, new Integer(5));
+        liste.add(0, new Integer(4));
+        liste.add(0, new Integer(3));
+        liste.add(0, new Integer(2));
+        liste.add(0, new Integer(1));
         System.out.println("Die Liste sollte jetzt die Elemente 1, 2, 3, 4, 5 enthalten.");
-        liste.durchlaufe();
+        System.out.println(liste);
 
-        liste.finde(new Integer(3));
+        int index = liste.indexOf(new Integer(3));
         // liste.aktuell sollte jetzt auf das Element mit dem Inhalt 3 zeigen.
-        liste.einfuegeHinter(new Integer(33));
+        liste.add(index + 1, new Integer(33));
         System.out.println("Die Liste sollte jetzt die Elemente 1, 2, 3, 33, 4, 5 enthalten.");
-        liste.durchlaufe();
+        System.out.println(liste);
 
-        liste.finde(new Integer(33));
+        index = liste.indexOf(new Integer(33));
         // liste.aktuell sollte jetzt auf das Element mit dem Inhalt 33 zeigen.
-        liste.loescheNachfolger();
+        liste.remove(index + 1);
         System.out.println("Die Liste sollte jetzt die Elemente 1, 2, 3, 33, 5 enthalten.");
-        liste.durchlaufe();
+        System.out.println(liste);
 
-        liste.loescheNachfolger();
+        liste.remove(index + 1);
         System.out.println("Die Liste sollte jetzt die Elemente 1, 2, 3, 33 enthalten.");
-        liste.durchlaufe();
+        System.out.println(liste);
 
         // liste.aktuell sollte jetzt den Wert null haben.
         // (Knoten mit Attribut daten == Integer(5) hat keinen Nachfolger.)
-        System.out.println("Jetzt wird eine Exception ausgeloest.");
+        // System.out.println("Jetzt wird eine Exception ausgeloest.");
 
-        liste.loescheNachfolger();
+        // liste.loescheNachfolger();
     }
 
 }
