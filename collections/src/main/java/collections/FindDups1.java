@@ -1,14 +1,51 @@
 package collections;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Comparator;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+// mysterious comparator, that is never needed...
+class CaseComperator implements Comparator<String> {
+
+    @Override
+    public int compare(String o1, String o2) {
+        return o1.toLowerCase().compareTo(o2.toString());
+    }
+}
 
 public class FindDups1 {
     public static void main(String args[]) {
-        Set<String> s = new HashSet<String>();
+        // Set<String> s = new HashSet<>();
+        // Set<String> s = new TreeSet<>();
+        SortedSet<String> s = new TreeSet<>();
 
+        int counterDistinct = 0;
 
-        // ...
+        System.out.println("Duplicates:");
+        for (String i : args) {
+            if (s.add(i)) {
+                counterDistinct++;
+            } else {
+                System.out.println(i);
+            }
+        }
+
+        System.out.println();
+        System.out.println("Anzahl distinct: " + counterDistinct);
+
+        System.out.println();
+        System.out.println("Alle Elemente:");
+
+        s.stream().forEach(e -> System.out.println(e));
+//
+//        // mehrfach vorkommende elemente ausgeben
+//        s.stream().filter(e -> Collections.frequency(s, e) > 1).collect(Collectors.toSet()).forEach(e -> System.out.println(e));
+//
+//        // anzahl unterschiedlicher elemente
+//        int countDistinctElements =  s.stream().filter(e -> Collections.frequency(s, e) == 1).collect(Collectors.toSet()).size() +
+//                s.stream().filter(e -> Collections.frequency(s, e) > 1).collect(Collectors.toSet()).size();
+//
+//        System.out.println("Anzahl unterschiedlicher Elemente: " + countDistinctElements);
 
 
     }
