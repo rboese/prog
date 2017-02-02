@@ -25,8 +25,12 @@ public class Perfekt {
                         // da negative Zahlen auftreten koennen, wird der Betrag der Zahl verwendet
                         //  --> Verwendung der Methode Math.abs
                         // Char in Zahl umwandeln : Verwendung der Methode charAt
-
+                        char c0 = Codes[m].charAt(0);
+                        char c1 = Codes[m].charAt(1);
+                        char c2 = Codes[m].charAt(2);
                         // ...
+
+                        Ziel_Buckets[(Math.abs(c0 * i) + Math.abs(c1 * j) + Math.abs(c2 * k)) % N] = m;
 
                         // Zahl auf den Ziel_Bucket Bereich abbilden
                         // ...
@@ -40,6 +44,17 @@ public class Perfekt {
                     /* Jetzt f?r alle Ziel-Buckets pr?fen, ob 2 gleich sind, dann ok == false setzen */
                     // Hinweis: doppelte for-Schleife
                     // ...
+                    for (int u = 0; u < 9; u++) {
+                        for (int v = u + 1; v < 10; v++) {
+                            if (Ziel_Buckets[u] == Ziel_Buckets[v]) {
+                                ok = !ok;
+                                break;
+                            }
+                        }
+                        if (!ok) {
+                            break;
+                        }
+                    }
 
                         /* Wenn alle Buckets verschieden, Werte f?r i,j,k sowie Divisor l ausgeben,
                            danach die Buckets f?ralle 10 Flugh?fen in obiger Reihenfolge ausgeben */
@@ -51,7 +66,8 @@ public class Perfekt {
                         for (int u = 0; u < 10; u++)
                             // Code und entsprechenden Ziel_Bucket ausgeben
                             // ...
-                            ;
+                            System.out.print(Codes[Ziel_Buckets[u]] + " " + u + " | ");
+                        System.out.println();
                     }
                 }
     }
