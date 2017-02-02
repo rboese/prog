@@ -11,22 +11,24 @@ class Element {
 
     public int get_Zahl()            //R?ckgabe des Zahlenwertes
     {
-        //	...
+        return zahl;
     }
 
     public void put_Zahl(int i)            //?berschreiben des Wertes
     {
-        //	...
+        zahl = i;
     }
 
     public char get_Flag()            //R?ckgabe des Reihenfolge-Kennzeichens
     {
-        //	...
+        return flag;
     }
 }
 
 
 public class Stabil {
+    public static final int PRIME = 7;
+
     public static Element[] selectionsort(Element feld[]) {
         for (int i = 0; i < feld.length - 1; i++) {
             // bestimme k als Platz des kleinsten Schl?ssels im Quellteil
@@ -50,9 +52,12 @@ public class Stabil {
     }
 
     public static Element[] transformieren(Element feld[]) {
-        for (int i = 0; i < feld.length; i++) {
-            // Transformationsfunktion anwenden
 
+
+        for (int i = 0; i < feld.length; i++) {
+            int hash = PRIME + feld[i].get_Zahl();
+            hash = hash * PRIME + feld[i].get_Flag();
+            feld[i].put_Zahl(hash);
         }
 
         System.out.print("Feld nach der Transformation:");
@@ -64,7 +69,10 @@ public class Stabil {
     public static Element[] ruecktransformieren(Element feld[]) {
         for (int i = 0; i < feld.length; i++) {
             // Ruecktransformation machen
-
+            int hash = feld[i].get_Zahl();
+            hash = hash - feld[i].get_Flag();
+            hash /= PRIME;
+            feld[i].put_Zahl(hash - PRIME);
         }
 
         return feld;
