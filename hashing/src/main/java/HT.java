@@ -81,7 +81,7 @@ class HashTable {
         if (!isMember(key)) {
             while (dataArray[hashValue] != null && !dataArray[hashValue].equals(emptyData)) {
                 visitCounter[hashValue]++;
-                hashValue = quadhash(hashValue, i++);
+                hashValue = quadhash(startHash, ++i);
             }
             visitCounter[hashValue]++;
             dataArray[hashValue] = data;
@@ -123,7 +123,7 @@ class HashTable {
         if (isMember(key)) {
             while (dataArray[hashValue].dataValue != key) {
                 visitCounter[hashValue]++;
-                hashValue = quadhash(hashValue, i++);
+                hashValue = quadhash(startHash, ++i);
             }
 
             visitCounter[hashValue]++;
